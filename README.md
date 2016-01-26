@@ -1,6 +1,6 @@
 ﻿![version](https://img.shields.io/npm/v/redux-load-api.svg) ![license](https://img.shields.io/npm/l/redux-load-api.svg) ![installs](https://img.shields.io/npm/dt/redux-load-api.svg) ![build](https://img.shields.io/travis/Download/redux-load-api.svg) ![mind BLOWN](https://img.shields.io/badge/mind-BLOWN-ff69b4.svg)
 
-# redux-load-api <sup><sub>v0.2.0</sub></sup>
+# redux-load-api <sup><sub>v0.3.0</sub></sup>
 
 **Load api for use with [redux-apis](https://github.com/download/redux-apis)**
 
