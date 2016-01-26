@@ -11,18 +11,15 @@ npm install --save redux-load-api
 ```
 
 ## Dependencies and imports
-redux-load-api depends on redux-apis, so import that as well
+redux-load-api has no dependencies, but is designed to work well with redux-apis.
 
 ```js
-import Api, { link } from 'redux-apis';
 import { load, onload } from 'redux-load-api';
 ```
 
 Or, using ES5 / `require`:
 
 ```js
-var Api = require('redux-apis').Api;
-var link = require('redux-apis').link;
 var load = require('redux-load-api').load;
 var onload = require('redux-load-api').onload;
 ```
