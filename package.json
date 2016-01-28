@@ -1,6 +1,6 @@
 {
   "name": "redux-load-api",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Load api for use with redux-apis",
   "main": "lib/redux-load-api.min.js",
   "babel": {

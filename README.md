@@ -1,6 +1,6 @@
 ﻿![version](https://img.shields.io/npm/v/redux-load-api.svg) ![license](https://img.shields.io/npm/l/redux-load-api.svg) ![installs](https://img.shields.io/npm/dt/redux-load-api.svg) ![build](https://img.shields.io/travis/Download/redux-load-api.svg) ![mind BLOWN](https://img.shields.io/badge/mind-BLOWN-ff69b4.svg)
 
-# redux-load-api <sup><sub>v0.3.1</sub></sup>
+# redux-load-api <sup><sub>v0.3.2</sub></sup>
 
 **Load api for use with [redux-apis](https://github.com/download/redux-apis)**
 
@@ -26,11 +26,11 @@ var load = require('redux-load-api').load;
 
 ## Usage
 
-Use `@onload(callback)` (or `onload(Component)(callback)`) to associate loader functions
+Use `@onload(callback)` (or `onload(callback)(Component)`) to associate loader functions
 with (React) components. Somehow collect the components that need to be rendered on the
 server (or have their data pre-loaded for some other reason) and pass them to `load`,
 along with the parameters to make available to the load functions. Then wait for the
-promise returned by `load` to fullfil. Once it does, your reduc store will be initialized
+promise returned by `load` to fullfil. Once it does, your redux store will be initialized
 and you can render the app fully hydrated.
 
 
@@ -63,8 +63,7 @@ will change for our use case, which is very simple).</sub>
 
 ### load(components, params)
 The function we passed to `@onload` is not called by itself.
-Instead, we cause it to be executed explicitly by calling
-`load`:
+Instead, we cause it to be executed explicitly by calling `load`:
 
 ```js
 // assuming App component from previous example...
@@ -86,8 +85,10 @@ match({ routes, location:req.url }, (err, redirect, renderProps) => {
 To support async loading (e.g. fetching from DB or remote server), you
 use redux with async behavior in the same way you normally do (e.g. with
 [redux-thunk](https://github.com/gaearon/redux-thunk)), making sure your
-loader function returns a `Promise`. `load` will return this promise so
-we can wait for it to fulfill using it's `then`:
+loader function returns a `Promise`. `load` will collect these promises
+and return a promise of it's own that only fulfills when all promises
+returned by the loader functions have completed.
+We can wait for it to fulfill using it's `then`:
 
 ```js
 match({ routes, location:req.url }, (err, redirect, renderProps) => {
