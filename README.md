@@ -1,6 +1,6 @@
 ﻿![version](https://img.shields.io/npm/v/redux-load-api.svg) ![license](https://img.shields.io/npm/l/redux-load-api.svg) ![installs](https://img.shields.io/npm/dt/redux-load-api.svg) ![build](https://img.shields.io/travis/Download/redux-load-api.svg) ![mind BLOWN](https://img.shields.io/badge/mind-BLOWN-ff69b4.svg)
 
-# redux-load-api <sup><sub>v0.3.0</sub></sup>
+# redux-load-api <sup><sub>v0.3.1</sub></sup>
 
 **Load api for use with [redux-apis](https://github.com/download/redux-apis)**
 
@@ -14,14 +14,14 @@ npm install --save redux-load-api
 redux-load-api has no dependencies, but is designed to work well with redux-apis.
 
 ```js
-import { load, onload } from 'redux-load-api';
+import { onload, load } from 'redux-load-api';
 ```
 
 Or, using ES5 / `require`:
 
 ```js
-var load = require('redux-load-api').load;
 var onload = require('redux-load-api').onload;
+var load = require('redux-load-api').load;
 ```
 
 ## Usage
@@ -34,7 +34,7 @@ promise returned by `load` to fullfil. Once it does, your reduc store will be in
 and you can render the app fully hydrated.
 
 
-#### @onload(fn/*(params)*/ )
+### @onload(fn/*(params)*/ )
 Often, we want to load some data into our redux-store before rendering our React
 component. With the `@onload` [decorator](https://github.com/wycats/javascript-decorators),
 we can associate a loader function with our component. This function will recieve
@@ -61,7 +61,7 @@ which restores the functionality from Babel 5 until the spec is finalized
 and we (maybe) have to change our code to match it (although I doubt it
 will change for our use case, which is very simple).</sub>
 
-#### load(components, params)
+### load(components, params)
 The function we passed to `@onload` is not called by itself.
 Instead, we cause it to be executed explicitly by calling
 `load`:
@@ -102,6 +102,8 @@ match({ routes, location:req.url }, (err, redirect, renderProps) => {
 For an example of server-side rendering with redux, redux-thunk, react,
 react-router, redux-react and redux-apis, refer to the unit tests.
 
+
+## See also
 If you don't like to keep adding async state flags to all your Apis,
 have a look at [redux-async-api](https://github.com/download/redux-async-api)
 which offers an out-of-the-box Api ready to extend from or compose into
