@@ -130,7 +130,7 @@ describe('load(components, params)', () => {
 		const routes = (<Route path="/" component={App}/>);
 		const history = createMemoryHistory();
 		const store = applyMiddleware(thunk)(createStore)(app.reducer);
-		store.app = link(store, app);
+		link(store, app);
 
 		match({ routes, location: '/' }, (err, redirect, renderProps) => {
 			let markup = renderToString(<Provider store={store}><RouterContext {...renderProps} /></Provider>);
