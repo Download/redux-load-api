@@ -1,6 +1,6 @@
 {
   "name": "redux-load-api",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Load api for use with redux-apis",
   "main": "lib/redux-load-api.min.js",
   "babel": {
@@ -66,12 +66,11 @@
     "react-redux": "^4.0.6",
     "react-router": "^2.0.0-rc5",
     "redux": "^3.0.6",
-    "redux-apis": "^1.0.0",
+    "redux-apis": "^2.0.0-alpha.1",
     "redux-thunk": "^1.0.3",
     "source-map-support": "^0.4.0",
     "webpack": "^1.12.12",
     "webpack-dev-server": "^1.14.1"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

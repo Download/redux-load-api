@@ -69,7 +69,7 @@ describe('load(components, params)', () => {
 			expect(componentBLoaded).to.equal(true);
 		});
 	});
-	it('can be used for server-side rendering with react', () => {
+	it('can be used for server-side rendering with react', (done) => {
 		class MyApi extends Api {
 			constructor(state = {async:'PENDING', results:[]}) {
 				super(state);
@@ -77,50 +77,60 @@ describe('load(components, params)', () => {
 				this.setHandler('BUSY', (state, action) => ({...state, async:'BUSY'}));
 				this.setHandler('DONE', (state, action) => ({...state, async:'DONE'}));
 				this.setHandler('SET_RESULTS', (state, action) => ({...state, results:action.payload}));
-				this.run = this.run.bind(this);
+				this.load = this.load.bind(this);
+				Object.defineProperty(this, 'pending', {enumerable:true,
+					get:() => this.getState().async === 'PENDING'
+				})
+				Object.defineProperty(this, 'busy', {enumerable:true,
+					get:() => this.getState().async === 'BUSY'
+				})
+				Object.defineProperty(this, 'done', {enumerable:true,
+					get:() => this.getState().async === 'DONE'
+				})
+				Object.defineProperty(this, 'results', {enumerable:true,
+					get:() => this.getState().results
+				})
 			}
-
-			pending() {return this.getState().async === 'PENDING';}
-			busy() {return this.getState().async === 'BUSY';}
-			done() {return this.getState().async === 'DONE';}
-			results() {return this.getState().results;}
 
 			setPending() {return this.dispatch(this.createAction('PENDING')());}
 			setBusy() {return this.dispatch(this.createAction('BUSY')());}
 			setDone() {return this.dispatch(this.createAction('DONE')());}
 			setResults(results) {return this.dispatch(this.createAction('SET_RESULTS')(results));}
 
-			run() {return this.dispatch(() => {
-				expect(this.pending()).to.equal(true);
-				expect(this.busy()).to.equal(false);
-				expect(this.done()).to.equal(false);
+			load() {return this.dispatch(() => {
+				expect(this.pending).to.equal(true);
+				expect(this.busy).to.equal(false);
+				expect(this.done).to.equal(false);
 				this.setBusy();
-				expect(this.pending()).to.equal(false);
-				expect(this.busy()).to.equal(true);
-				expect(this.done()).to.equal(false);
-				return Promise.resolve(['Many', 'cool', 'products']).then((results) => {
-					this.setDone();
-					expect(this.pending()).to.equal(false);
-					expect(this.busy()).to.equal(false);
-					expect(this.done()).to.equal(true);
-					this.setResults(results);
-				});
+				expect(this.pending).to.equal(false);
+				expect(this.busy).to.equal(true);
+				expect(this.done).to.equal(false);
+				return Promise.resolve(['Many', 'cool', 'products'])
+					.then((results) => {
+						this.setDone();
+						expect(this.pending).to.equal(false);
+						expect(this.busy).to.equal(false);
+						expect(this.done).to.equal(true);
+						this.setResults(results);
+						done();
+					})
+					.catch(done);
 			});}
 		}
 
-		const app = new MyApi();
+		const app = new MyApi().init();
 
-		@onload(app.run)
+		@onload(app.load)
 		@connect(app.connector)
 		class App extends Component {
 		  render() {
 			// 2. access data as props
-			const { async, results, api } = this.props;
+			const { pending, busy, results } = this.props;
 			return (
 				<div>
 					<p>{
-						async === 'PENDING' ? 'Pending...' : (
-						async === 'BUSY' ? 'Busy...' : results)
+						pending ? 'Pending...' : (
+						busy ? 'Busy...' : results)
 					}</p>
 				</div>
 			);

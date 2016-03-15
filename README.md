@@ -1,8 +1,8 @@
 ﻿![version](https://img.shields.io/npm/v/redux-load-api.svg) ![license](https://img.shields.io/npm/l/redux-load-api.svg) ![installs](https://img.shields.io/npm/dt/redux-load-api.svg) ![build](https://img.shields.io/travis/Download/redux-load-api.svg) ![mind BLOWN](https://img.shields.io/badge/mind-BLOWN-ff69b4.svg)
 
-# redux-load-api <sup><sub>v1.0.0</sub></sup>
+# redux-load-api <sup><sub>v2.0.0</sub></sup>
 
-**Load api for use with [redux-apis](https://github.com/download/redux-apis)**
+**Load api for use with [redux-apis](https://github.com/download/redux-apis) v2.x**
 
 ## Installation
 
@@ -10,8 +10,16 @@
 npm install --save redux-load-api
 ```
 
+<sub>*NOTE* When using redux-load-api on older versions of Node, or older browsers that
+don't support `Promise`s, make sure to install a Promise polyfill as well.
+This library is tested on Node JS 0.10, as can be seen in the [.travis.yml](.travis.yml)
+config file, using [babel-polyfill](https://babeljs.io/docs/usage/polyfill/).</sub>
+
+
 ## Dependencies and imports
-redux-load-api has no dependencies, but is designed to work well with redux-apis.
+
+redux-load-api has no dependencies, but is designed to work well with
+[redux-apis](https://npmjs.org/package/redux-apis) v2.x.
 
 ```js
 import { onload, load } from 'redux-load-api';
@@ -35,6 +43,7 @@ and you can render the app fully hydrated.
 
 
 ### @onload(fn/*(params)*/ )
+
 Often, we want to load some data into our redux-store before rendering our React
 component. With the `@onload` [decorator](https://github.com/wycats/javascript-decorators),
 we can associate a loader function with our component. This function will recieve
@@ -61,7 +70,9 @@ which restores the functionality from Babel 5 until the spec is finalized
 and we (maybe) have to change our code to match it (although I doubt it
 will change for our use case, which is very simple).</sub>
 
+
 ### load(components, params)
+
 The function we passed to `@onload` is not called by itself.
 Instead, we cause it to be executed explicitly by calling `load`:
 
@@ -105,6 +116,7 @@ react-router, redux-react and redux-apis, refer to the unit tests.
 
 
 ## See also
+
 If you don't like to keep adding async state flags to all your Apis,
 have a look at [redux-async-api](https://github.com/download/redux-async-api)
 which offers an out-of-the-box Api ready to extend from or compose into
@@ -112,15 +124,18 @@ your own Apis.
 
 
 ## Feedback, suggestions, questions, bugs
+
 Please visit the [issue tracker](https://github.com/download/redux-async-api/issues)
 for any of the above. Don't be afraid about being off-topc.
 Constructive feedback most appreciated!
 
 
 ## Copyright
+
 © 2016, [Stijn de Witt](http://StijnDeWitt.com). Some rights reserved.
 
 
 ## License
+
 [Creative Commons Attribution 4.0 (CC-BY-4.0)](https://creativecommons.org/licenses/by/4.0/)
 
