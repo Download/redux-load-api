@@ -5,6 +5,6 @@
 export function load(components, params) {
 	return Promise.all(components
 		.filter(component => component.onload)
-		.map(component => component.onload(params))
-		.filter(result => result instanceof Promise));
+		.map(component => Promise.resolve(component.onload(params)))
+	);
 }
