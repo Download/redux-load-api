@@ -2,6 +2,8 @@
 
 # redux-load-api <sup><sub>v2.0.2</sub></sup>
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Download/redux-load-api.svg)](https://greenkeeper.io/)
+
 **Load api for use with [redux-apis](https://github.com/download/redux-apis)**
 
 ## Installation
