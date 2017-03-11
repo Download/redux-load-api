@@ -64,7 +64,7 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
-    "react-router": "^3.0.2",
+    "react-router": "^4.0.0",
     "redux": "^3.0.6",
     "redux-apis": "^1.0.0||^2.0.0-alpha.1||^2.0.0-alpha.2",
     "redux-thunk": "^2.2.0",
