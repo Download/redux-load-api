@@ -68,7 +68,7 @@
     "redux": "^3.0.6",
     "redux-apis": "^1.0.0||^2.0.0-alpha.1||^2.0.0-alpha.2",
     "redux-thunk": "^2.2.0",
-    "source-map-support": "^0.4.0",
+    "source-map-support": "^0.4.15",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.3.0"
   },
